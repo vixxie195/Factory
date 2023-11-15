@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Ordering App</title>
+</head>
+<body>
+  <h1>Coffee Ordering App</h1>
+
+  <label for="coffeeType">Choose a coffee type:</label>
+  <select id="coffeeType">
+    <option value="espresso">Espresso</option>
+    <option value="cappuccino">Cappuccino</option>
+    <option value="americano">Americano</option>
+  </select>
+
+  <button onclick="orderCoffee()">Order Coffee</button>
+
+  <script>
+    class Coffee {
+      grindCoffee() {}
+      makeCoffee() {}
+      pourIntoCup() {}
+    }
+
+    class CoffeeFactory {
+      createCoffee(type) {}
+    }
+
+    class Espresso extends Coffee {
+      grindCoffee() {
+        console.log('Grinding coffee beans for Espresso...');
+      }
+
+      makeCoffee() {
+        console.log('Making Espresso...');
+      }
+
+      pourIntoCup() {
+        console.log('Pouring Espresso into cup...');
+      }
+    }
+
+    class Cappuccino extends Coffee {
+      grindCoffee() {
+        console.log('Grinding coffee beans for Cappuccino...');
+      }
+
+      makeCoffee() {
+        console.log('Making Cappuccino...');
+      }
+
+      pourIntoCup() {
+        console.log('Pouring Cappuccino into cup...');
+      }
+    }
+
+    class Americano extends Coffee {
+      grindCoffee() {
+        console.log('Grinding coffee beans for Americano...');
+      }
+
+      makeCoffee() {
+        console.log('Making Americano...');
+      }
+
+      pourIntoCup() {
+        console.log('Pouring Americano into cup...');
+      }
+    }
+
+    class ConcreteCoffeeFactory extends CoffeeFactory {
+      createCoffee(type) {
+        switch (type) {
+          case 'espresso':
+            return new Espresso();
+          case 'cappuccino':
+            return new Cappuccino();
+          case 'americano':
+            return new Americano();
+          default:
+            throw new Error('Invalid coffee type');
+        }
+      }
+    }
+
+    function orderCoffee() {
+      const coffeeType = document.getElementById('coffeeType').value;
+      const coffeeFactory = new ConcreteCoffeeFactory();
+      const coffee = coffeeFactory.createCoffee(coffeeType);
+
+      coffee.grindCoffee();
+      coffee.makeCoffee();
+      coffee.pourIntoCup();
+    }
+  </script>
+</body>
+</html>
